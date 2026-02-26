@@ -1,6 +1,13 @@
 import { Music, Mic, Theater, Palette, Dumbbell, Gamepad2 } from 'lucide-react';
+import React from 'react';
 
-const categories = [
+interface Category {
+  name: string;
+  icon: React.ElementType;
+  color: string;
+}
+
+const categories: Category[] = [
   { name: 'Music', icon: Music, color: 'text-rose-500 bg-rose-50 border-rose-100' },
   { name: 'Conferences', icon: Mic, color: 'text-sky-500 bg-sky-50 border-sky-100' },
   { name: 'Cultural', icon: Theater, color: 'text-violet-500 bg-violet-50 border-violet-100' },
@@ -9,7 +16,7 @@ const categories = [
   { name: 'Tech', icon: Gamepad2, color: 'text-indigo-500 bg-indigo-50 border-indigo-100' },
 ];
 
-const Categories = () => {
+const Categories: React.FC = () => {
   return (
     <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">

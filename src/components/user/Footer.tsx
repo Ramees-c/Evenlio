@@ -1,6 +1,7 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import React from 'react';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-950 text-slate-300 pt-12 md:pt-16 pb-8 border-t border-slate-800">
       <div className="container mx-auto px-4 md:px-6">

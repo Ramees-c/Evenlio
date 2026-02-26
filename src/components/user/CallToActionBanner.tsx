@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
+import React from 'react';
 
-const CallToActionBanner = () => {
+const CallToActionBanner: React.FC = () => {
   return (
     <section className="relative bg-slate-900">
       <div className="absolute inset-0">

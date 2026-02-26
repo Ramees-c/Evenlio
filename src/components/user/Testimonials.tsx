@@ -1,6 +1,15 @@
 import { Star, Quote } from 'lucide-react';
 
-const testimonials = [
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  content: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Sarah Johnson",

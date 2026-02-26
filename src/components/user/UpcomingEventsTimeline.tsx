@@ -1,8 +1,22 @@
 import { useRef, useEffect, useState } from 'react';
 import { Clock, Calendar, ArrowRight } from 'lucide-react';
 
-const UpcomingEventsTimeline = ({ events }) => {
-  const scrollRef = useRef(null);
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  price: number;
+  image: string;
+}
+
+interface UpcomingEventsTimelineProps {
+  events: Event[];
+}
+
+const UpcomingEventsTimeline = ({ events }: UpcomingEventsTimelineProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -15,7 +29,7 @@ const UpcomingEventsTimeline = ({ events }) => {
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         // Scroll by the width of the first card + gap
-        const firstCard = scrollContainer.firstElementChild;
+        const firstCard = scrollContainer.firstElementChild as HTMLElement;
         if (firstCard) {
           const cardWidth = firstCard.clientWidth;
           // Add gap (approx 20px to cover gap-4/gap-6 and trigger snap)
@@ -24,7 +38,7 @@ const UpcomingEventsTimeline = ({ events }) => {
       }
     };
 
-    let intervalId;
+    let intervalId: ReturnType<typeof setInterval>;
     if (!isPaused) {
       intervalId = setInterval(autoScroll, 3000);
     }
@@ -32,10 +46,10 @@ const UpcomingEventsTimeline = ({ events }) => {
     return () => clearInterval(intervalId);
   }, [isPaused]);
 
-  const getDaysRemaining = (dateString) => {
+  const getDaysRemaining = (dateString: string) => {
     const eventDate = new Date(dateString);
     const today = new Date();
-    const diffTime = eventDate - today;
+    const diffTime = eventDate.getTime() - today.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays > 0 ? diffDays : 0;
   };
